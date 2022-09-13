@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">live-uikit-sample</string>
+    <string name="build_by">Build by</string>
+    <string name="text_hint_application_id">Application ID</string>
+    <string name="text_hint_user_id">User ID</string>
+    <string name="text_hint_nickname">Nickname</string>
+    <string name="text_hint_access_token">Access token (optional)</string>
+    <string name="text_button_sign_in">Sign in</string>
+    <string name="bottom_navigation_bar_live_events">Live events</string>
+    <string name="bottom_navigation_bar_my_settings">My settings</string>
+    <string name="text_user_id">User ID</string>
+    <string name="text_application_information">Application information</string>
+    <string name="text_sign_out">Sign out</string>
+    <string name="text_name">Name</string>
+    <string name="text_id">ID</string>
+</resources>

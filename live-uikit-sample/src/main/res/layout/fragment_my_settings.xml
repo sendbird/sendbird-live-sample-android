@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MySettingsFragment"
+    android:orientation="vertical"
+    android:background="@color/background_50">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="@string/bottom_navigation_bar_my_settings"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/sb_size_24"
+        android:paddingEnd="@dimen/sb_size_24"
+        style="@style/SendbirdH1OnLight01"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/onlight_04" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal"
+        app:cardCornerRadius="40dp" >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivProfile"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/icon_user"
+            android:scaleType="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="24dp"
+        android:textAlignment="center"
+        style="@style/SendbirdH1OnLight01" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/onlight_04" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/text_user_id"
+        style="@style/SendbirdBody2OnLight02" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        style="@style/SendbirdBody3OnLight01" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/onlight_04"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clApplicationInformation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivApplicationInformationIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_info"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/text_application_information"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivApplicationInformationIcon"
+            app:layout_constraintEnd_toStartOf="@id/ivApplicationInformationRightArrow"
+            style="@style/SendbirdSubtitle2OnLight01"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivApplicationInformationRightArrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/icon_chevron_right_black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/onlight_04"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        />
+    
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSignOut"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/text_sign_out"
+        android:textAllCaps="false"
+        style="@style/SendbirdButtonOnLight01"
+        app:cornerRadius="4dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/onlight_01"
+        android:backgroundTint="@color/background_50" />
+
+</LinearLayout>
