@@ -1,8 +1,8 @@
 package com.sendbird.live.uikit.sample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.appcompat.app.AppCompatActivity
 import com.sendbird.live.uikit.SendbirdLiveUIKit
 import com.sendbird.live.uikit.sample.databinding.ActivityApplicationInformationBinding
 

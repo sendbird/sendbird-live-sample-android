@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import coil.load
 import com.sendbird.live.SendbirdLive
 import com.sendbird.live.uikit.SendbirdLiveUIKit

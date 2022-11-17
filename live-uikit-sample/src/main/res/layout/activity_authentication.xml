@@ -4,142 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthenticationActivity"
+    android:background="@color/background_50"
     android:paddingStart="@dimen/sb_size_24"
-    android:paddingEnd="@dimen/sb_size_24">
+    android:paddingEnd="@dimen/sb_size_24"
+    tools:context=".AuthenticationActivity">
 
-    <LinearLayout
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sb_size_64"
+        android:src="@drawable/icon_logo_live_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_logo_live_horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/sb_size_64" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/sb_size_56"
-            android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/sb_size_48"
-            android:background="@drawable/selector_edittext_background_with_focusable"
-            app:boxStrokeColor="@color/primary_300"
-            app:hintTextColor="@color/primary_300">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etApplicationId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/text_hint_application_id"
-                android:maxLines="1"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_rect_transparent"
-                android:textCursorDrawable="@drawable/shape_cursor_drawable"
-                android:imeOptions="actionNext|flagNoExtractUi"
-                android:inputType="text"
-                style="@style/SendbirdBody1OnLight01">
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/sb_size_56"
-            android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/sb_size_16"
-            android:background="@drawable/selector_edittext_background_with_focusable"
-            app:boxStrokeColor="@color/primary_300"
-            app:hintTextColor="@color/primary_300">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etUserId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/text_hint_user_id"
-                android:maxLines="1"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_rect_transparent"
-                android:textCursorDrawable="@drawable/shape_cursor_drawable"
-                android:imeOptions="actionNext|flagNoExtractUi"
-                android:inputType="text"
-                style="@style/SendbirdBody1OnLight01">
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/sb_size_56"
-            android:gravity="center_vertical"
-            android:layout_marginTop="@dimen/sb_size_16"
-            android:background="@drawable/selector_edittext_background_with_focusable"
-            app:boxStrokeColor="@color/primary_300"
-            app:hintTextColor="@color/primary_300">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etAccessToken"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/text_hint_access_token"
-                android:maxLines="1"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/shape_rect_transparent"
-                android:textCursorDrawable="@drawable/shape_cursor_drawable"
-                android:imeOptions="actionNext|flagNoExtractUi"
-                android:inputType="text"
-                style="@style/SendbirdBody1OnLight01">
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginTop="@dimen/sb_size_48"
+        app:layout_constraintTop_toBottomOf="@+id/ivLogo">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonSignIn"
+            android:id="@+id/btSignInWithQR"
+            style="@style/SendbirdButtonOnDark01"
             android:layout_width="match_parent"
             android:layout_height="@dimen/sb_size_48"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="@string/text_button_sign_in"
+            android:text="@string/text_sign_in_with_qr"
             android:textAllCaps="false"
-            android:layout_marginTop="@dimen/sb_size_32"
-            style="@style/SendbirdButtonOnDark01" />
-    </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clDivider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/sb_size_16"
+            app:layout_constraintTop_toBottomOf="@+id/btSignInWithQR">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/sb_size_1"
+                android:background="@color/onlight_04"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDivider"
+                style="@style/SendbirdCaption2OnLight02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/background_50"
+                android:paddingStart="@dimen/sb_size_16"
+                android:paddingEnd="@dimen/sb_size_16"
+                android:text="@string/text_divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btSignInWithId"
+            style="@style/SendbirdButtonOutlinedLight01"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sb_size_48"
+            android:layout_marginTop="@dimen/sb_size_16"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/text_sign_in_with_id"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/clDivider"
+            app:strokeColor="@color/onlight_01" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivSendbirdIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_logo_sendbird_horizontal"
         android:layout_marginBottom="@dimen/sb_size_48"
-        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/icon_logo_sendbird_horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/viewVersionPadding"
         android:layout_width="@dimen/sb_size_12"
         android:layout_height="@dimen/sb_size_1"
         android:layout_marginBottom="@dimen/sb_size_16"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ivSendbirdIcon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/ivSendbirdIcon" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvLiveSdkVersion"
+        style="@style/SendbirdCaption2OnLight02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/sb_size_12"
-        style="@style/SendbirdCaption2OnLight02"
-        app:layout_constraintEnd_toStartOf="@id/viewVersionPadding"
         app:layout_constraintBottom_toBottomOf="@id/viewVersionPadding"
-        />
+        app:layout_constraintEnd_toStartOf="@id/viewVersionPadding" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvChatSdkVersion"
+        style="@style/SendbirdCaption2OnLight02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/sb_size_12"
-        style="@style/SendbirdCaption2OnLight02"
-        app:layout_constraintStart_toEndOf="@id/viewVersionPadding"
-        app:layout_constraintBottom_toBottomOf="@id/viewVersionPadding" />
+        app:layout_constraintBottom_toBottomOf="@id/viewVersionPadding"
+        app:layout_constraintStart_toEndOf="@id/viewVersionPadding" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
