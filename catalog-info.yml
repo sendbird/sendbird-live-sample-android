@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: sendbird-live-sample-android
+  description: Public sample repository for Sendbird Live android
+  annotations:
+    github.com/project-slug: sendbird/sendbird-live-sample-android
+spec:
+  type: library
+  lifecycle: production
+  owner: dep-client-platform
+  system: sendbird-live
+
