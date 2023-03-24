@@ -48,7 +48,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
 
     // sendbird live uikit
-    implementation 'com.sendbird.sdk:sendbird-live-uikit:1.0.0-beta.3'
+    implementation 'com.sendbird.sdk:sendbird-live-uikit:1.0.0-beta.4'
 
     // QRCode
     implementation('com.journeyapps:zxing-android-embedded:4.3.0') { transitive = false }
