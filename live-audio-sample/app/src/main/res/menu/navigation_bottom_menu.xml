@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuButtonLiveEvents"
+        android:icon="@drawable/icon_logo_live"
+        android:title="@string/bottom_navigation_bar_live_events" />
+
+    <item
+        android:id="@+id/menuButtonMySettings"
+        android:icon="@drawable/icon_setting_filled"
+        android:title="@string/bottom_navigation_bar_my_settings" />
+
+</menu>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="divider">#1F000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary_200">#C2A9FA</color>
+    <color name="primary_300">#742DDD</color>
+    <color name="onlight_01">#FF000000</color>
+    <color name="onlight_02">#80000000</color>
+    <color name="onlight_03">#61000000</color>
+    <color name="onlight_04">#D4D4D4</color>
+    <color name="ondark_01">#E1FFFFFF</color>
+    <color name="ondark_02">#80FFFFFF</color>
+    <color name="ondark_03">#61FFFFFF</color>
+    <color name="ondark_04">#1EFFFFFF</color>
+    <color name="background_100">#EEEEEE</color>
+    <color name="background_300">#BDBDBD</color>
+    <color name="background_400">#393939</color>
+    <color name="background_500">#2C2C2C</color>
+    <color name="background_600">#161616</color>
+    <color name="information_200">#A9BBFA</color>
+    <color name="error_200">#F66161</color>
+    <color name="open_300">#30308f</color>
+    <color name="open_100">#c8d9fa</color>
+
+    <color name="reaction_white">#c8d9fa</color>
+    <color name="reaction_violet">#A538D7</color>
+    <color name="reaction_purple">#8E64FA</color>
+    <color name="reaction_yellow">#FFC233</color>
+    <color name="reaction_green">#79D1A2</color>
+    <color name="reaction_blue">#79A2F2</color>
+    <color name="reaction_orange">#FFAB52</color>
+    <color name="reaction_red">#FB6B6B</color>
+</resources>

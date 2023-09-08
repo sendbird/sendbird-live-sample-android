@@ -1,0 +1,95 @@
+<resources>
+    <string name="app_name">audio-only-live-event-sample</string>
+
+    <string name="application_id">Application ID</string>
+    <string name="user_id">User ID</string>
+    <string name="access_token_optional">Access token (optional)</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sdk">SDK</string>
+    <string name="live_events">Live events</string>
+    <string name="my_settings">My settings</string>
+    <string name="go_live">Go live</string>
+    <string name="no_live_events">No live events</string>
+    <string name="sign_out">Sign out</string>
+    <string name="bottom_navigation_bar_live_events">Live events</string>
+    <string name="bottom_navigation_bar_my_settings">My settings</string>
+    <string name="live_event_information">Live event information</string>
+    <string name="hosts">Hosts</string>
+    <string name="participants">Participants</string>
+    <string name="freeze_chat">Freeze chat</string>
+    <string name="freeze_channel_description">Only operators can send a message. This doesn\&#39;t stop the live event.</string>
+    <string name="live_event_id">Live event ID</string>
+    <string name="created_on">Created on</string>
+    <string name="created_by">Created by</string>
+    <string name="started_on">Started on</string>
+    <string name="started_by">Started by</string>
+    <string name="you">You</string>
+    <string name="save">Save</string>
+
+    <string name="okay">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="live_event">Live event</string>
+    <string name="upcoming">UPCOMING</string>
+    <string name="start">Start</string>
+    <string name="open">OPEN</string>
+    <string name="live">LIVE</string>
+    <string name="ended">ENDED</string>
+
+    <string name="audio_device">Audio device</string>
+    <string name="audio_device_earpiece">Earpiece</string>
+    <string name="audio_device_speakerphone">Speakerphone</string>
+    <string name="audio_device_wired_headset">Wired headset</string>
+    <string name="audio_device_bluetooth">Bluetooth</string>
+
+    <string name="participant_count_affix">%s participants</string>
+    <string name="watching_count_affix">%s watching</string>
+    <string name="live_event_title_affix">%s\&#39;s audio live</string>
+
+    <string name="banner_message_live_event_ready">Live event will begin soon.</string>
+    <string name="banner_message_live_event_ended">Live event has ended.</string>
+    <string name="banner_message_host_disconnected">Host is temporarily unavailable.</string>
+    <string name="banner_message_host_muted">Host is muted.</string>
+
+    <string name="dialog_message_host_end">End live event?</string>
+    <string name="dialog_message_host_do_end">End live event</string>
+    <string name="dialog_message_live_event_information_change_event_title">Change event title</string>
+    <string name="dialog_message_live_event_information_change_event_title_placeholder">Enter title</string>
+    <string name="dialog_message_live_event_information_change_event_cover_image">Change cover image</string>
+
+
+    <string name="dialog_message_take_photo">Take photo</string>
+    <string name="dialog_message_photo_library">Choose photo</string>
+    <string name="dialog_message_remove_photo">Remove photo</string>
+    <string name="dialog_message_choose_photo">Choose photo</string>
+    <string name="dialog_message_host">Hosts</string>
+
+    <string name="summary_total_participants">Total participants</string>
+    <string name="summary_peak_concurrent_participants">Peak concurrent participants</string>
+    <string name="summary_duration">Duration</string>
+
+    <string name="error_message_enter_the_app_id">Please enter the Application ID.</string>
+    <string name="error_message_enter_the_user_id">Please enter the User ID.</string>
+    <string name="error_message_sign_in">Sign in failed. Please check your information and try again.</string>
+
+    <string name="error_message_ended_enter_dialog_description">Can\&#39;t enter an ended live event.</string>
+    <string name="error_message_created_enter_dialog_description">This live event will open soon.</string>
+
+    <string name="permission_dialog_granted">Permission granted</string>
+    <string name="permission_dialog_title">Allow permission</string>
+    <string name="permission_dialog_message_for_camera">"Sendbird Live" Would Like to Access the Camera\n This will allow you to use camera in a live event.</string>
+    <string name="permission_dialog_message_for_camera_and_audio">"Sendbird Live" Would Like to Access the Camera and Audio\n This will allow you to use camera and audio in a live event.</string>
+    <string name="permission_dialog_apply">OK</string>
+    <string name="permission_dialog_deny">Don\&#39;t Allow</string>
+    <string name="permission_dialog_denied_title">Allow permission</string>
+    <string name="permission_dialog_denied_message">To allow %1$s to use %2$s, go to App info</string>
+    <string name="permission_dialog_denied_apply">App info</string>
+    <string name="permission_dialog_denied_deny">Cancel</string>
+    <string name="permission_text_camera">CAMERA</string>
+    <string name="permission_text_record_audio">RECORD AUDIO</string>
+    <string name="permission_text_call_phone">CALL PHONE</string>
+    <string name="permission_text_read_phone_state">READ PHONE STATE</string>
+    <string name="permission_text_bluetooth_admin">BLUETOOTH ADMIN</string>
+    <string name="permission_text_bluetooth">BLUETOOTH</string>
+    <string name="permission_text_bluetooth_connect">BLUETOOTH CONNECT</string>
+    <string name="permission_text_unknown">etc</string>
+</resources>
