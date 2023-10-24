@@ -67,8 +67,8 @@ abstract class LiveEventActivity : AppCompatActivity() {
         binding.tvTimer.visibility = optionVisibility
         binding.ivHostProfile.load(liveEvent?.coverUrl ?: liveEvent?.host?.profileURL) {
             crossfade(true)
-            placeholder(R.drawable.icon_user)
-            error(R.drawable.icon_user)
+            placeholder(R.drawable.icon_default_user)
+            error(R.drawable.icon_default_user)
         }
         setLiveStateView(liveEvent?.state ?: LiveEventState.CREATED)
         if (liveEvent?.state == LiveEventState.ONGOING) {

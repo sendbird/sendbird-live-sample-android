@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.sendbird.android.user.User
+import com.sendbird.live.audioliveeventsample.R
 import com.sendbird.live.audioliveeventsample.databinding.ViewUserListItemBinding
 
 internal class ParticipantListAdapter : RecyclerView.Adapter<ParticipantListAdapter.ViewHolder>() {
@@ -48,7 +49,10 @@ internal class ParticipantListAdapter : RecyclerView.Adapter<ParticipantListAdap
         fun bind(user: User) {
             binding.ivUserIdsForHostListItemMore.visibility = View.INVISIBLE
             binding.tvUserIdsForHostListItemUserName.text = user.displayName
-            binding.ivUserIdsForHostListItemProfile.load(user.profileUrl)
+            binding.ivUserIdsForHostListItemProfile.load(user.profileUrl) {
+                error(R.drawable.icon_default_user)
+                placeholder(R.drawable.icon_default_user)
+            }
         }
     }
 

@@ -61,7 +61,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:backgroundTint="@color/onlight_04"
+                android:backgroundTint="@color/background_300"
                 app:cardCornerRadius="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,6 +121,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:minWidth="60dp"
             android:padding="8dp"
             android:text="@string/start"
             app:layout_constraintEnd_toEndOf="parent"

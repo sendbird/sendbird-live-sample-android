@@ -13,11 +13,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clToolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:paddingStart="24dp"
-            android:paddingTop="18dp"
             android:paddingEnd="12dp"
-            android:paddingBottom="18dp"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -156,10 +154,10 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSignOut"
+                style="@style/SignOutButtonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:background="@drawable/shape_on_light_01_border_button_background"
                 android:text="@string/sign_out"
                 app:layout_constraintTop_toBottomOf="@+id/clAppId" />
 

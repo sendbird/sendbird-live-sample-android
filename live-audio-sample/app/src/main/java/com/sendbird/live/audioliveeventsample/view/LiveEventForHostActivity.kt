@@ -97,7 +97,6 @@ class LiveEventForHostActivity : LiveEventActivity() {
             negText = getString(R.string.cancel),
             backgroundDrawableResId = R.style.DarkDialog,
             positiveButtonFunction = { finishLiveEvent(true) }
-
         )
     }
 

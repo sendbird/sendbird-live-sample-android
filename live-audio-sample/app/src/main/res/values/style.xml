@@ -90,6 +90,13 @@
         <item name="android:lineSpacingExtra">0sp</item>
     </style>
 
+    <style name="Text16OnLight01Bold">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/onlight_01</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+    </style>
+
     <style name="Text16OnDark01">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/ondark_01</item>
@@ -140,9 +147,18 @@
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingBottom">14dp</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">#E0000000</item>
+        <item name="android:textColor">@color/onlight_01</item>
         <item name="android:lineSpacingExtra">0sp</item>
         <item name="android:background">@drawable/shape_edittext_background</item>
+    </style>
+
+    <style name="SignOutButtonStyle">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/onlight_01</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:lineSpacingExtra">0sp</item>
+        <item name="android:background">@drawable/shape_on_light_01_border_button_background</item>
     </style>
 
     <style name="PurpleButtonStyle">

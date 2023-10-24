@@ -50,7 +50,8 @@ class LiveEventDetailActivity : AppCompatActivity() {
     private fun initLiveEventDetailView(liveEvent: LiveEvent) {
         with(binding) {
             liveEvent.coverUrl?.let { ivLiveEventDetailCover.load(it) {
-                error(R.drawable.icon_user)
+                error(R.drawable.icon_default_user)
+                placeholder(R.drawable.icon_default_user)
             } }
             tvLiveEventDetailTitle.text = if (!liveEvent.title.isNullOrEmpty()) liveEvent.title else getString(R.string.live_event)
             tvLiveEventDetailHostCount.text = liveEvent.userIdsForHost.size.toString()

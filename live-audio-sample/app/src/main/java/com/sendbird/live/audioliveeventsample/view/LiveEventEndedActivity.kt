@@ -21,7 +21,7 @@ class LiveEventEndedActivity : AppCompatActivity() {
     private fun initView(coverUrl: String) {
         binding.ivClose.setOnClickListener { finish() }
         binding.ivLiveThumbnail.load(coverUrl) {
-            error(R.drawable.icon_user)
+            error(R.drawable.icon_default_user)
         }
     }
 }

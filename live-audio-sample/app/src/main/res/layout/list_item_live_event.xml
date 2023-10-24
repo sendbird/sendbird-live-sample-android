@@ -16,7 +16,7 @@
             android:id="@+id/cvLiveThumbnail"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:backgroundTint="@color/onlight_04"
+            android:backgroundTint="@color/background_300"
             app:cardCornerRadius="28dp"
             app:cardElevation="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -42,7 +42,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitle"
-                style="@style/Text16OnLight01"
+                style="@style/Text16OnLight01Bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent" />
