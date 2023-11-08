@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SetupItemView">
+        <attr name="left_icon" format="reference" />
+        <attr name="left_icon_tint" format="reference" />
+        <attr name="title_text" format="string" />
+        <attr name="title_text_appearance" format="reference" />
+        <attr name="tag_text_appearance" format="reference" />
+    </declare-styleable>
+
+<!--  Sendbird live theme  -->
+
+    <declare-styleable name="SendbirdLiveTheme">
+        <attr name="sb_widget_setup_item_view" format="reference"/>
+    </declare-styleable>
+</resources>
