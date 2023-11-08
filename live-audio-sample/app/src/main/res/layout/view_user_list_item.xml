@@ -21,8 +21,7 @@
             android:id="@+id/ivUserIdsForHostListItemProfile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:src="@drawable/icon_user" />
+            android:scaleType="centerInside" />
 
     </androidx.cardview.widget.CardView>
 

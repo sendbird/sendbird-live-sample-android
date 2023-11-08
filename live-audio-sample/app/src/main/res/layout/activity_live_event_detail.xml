@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clToolbar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:background="@color/background_500"
         android:paddingStart="24dp"
         android:paddingTop="18dp"
@@ -66,20 +66,19 @@
                 android:layout_height="80dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="24dp"
-                android:backgroundTint="@color/onlight_04"
+                android:backgroundTint="@color/background_300"
                 app:cardCornerRadius="40dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivLiveEventDetailCover"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/icon_user" />
+                    android:scaleType="centerCrop"/>
             </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLiveEventDetailTitle"
-                style="@style/Text18OnDark01"
+                style="@style/Text18OnDark01Bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"

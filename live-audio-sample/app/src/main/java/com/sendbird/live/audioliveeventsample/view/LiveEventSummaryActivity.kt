@@ -24,7 +24,7 @@ class LiveEventSummaryActivity : AppCompatActivity() {
     private fun initView(coverUrl: String, totalParticipants: Int, peakParticipants: Int, duration: Long) {
         binding.ivClose.setOnClickListener { finish() }
         binding.ivLiveThumbnail.load(coverUrl) {
-            error(R.drawable.icon_user)
+            error(R.drawable.icon_default_user)
         }
         binding.tvLiveEventSummaryTotalParticipants.text = totalParticipants.threeQuotes()
         binding.tvLiveEventSummaryPeakParticipant.text = peakParticipants.threeQuotes()

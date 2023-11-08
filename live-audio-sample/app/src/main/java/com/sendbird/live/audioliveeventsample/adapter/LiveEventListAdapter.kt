@@ -73,8 +73,8 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
         override fun bind(liveEvent: LiveEvent) {
             binding.ivLiveThumbnail.load(liveEvent.coverUrl) {
                 crossfade(true)
-                placeholder(R.drawable.icon_user)
-                error(R.drawable.icon_user)
+                placeholder(R.drawable.icon_default_user)
+                error(R.drawable.icon_default_user)
             }
             binding.tvTitle.text = liveEvent.title
             binding.tvParticipantCount.text = "${liveEvent.participantCount}".attachAffix(binding.root.context.getString(R.string.watching_count_affix))
