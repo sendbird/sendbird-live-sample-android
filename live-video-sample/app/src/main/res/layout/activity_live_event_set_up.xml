@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_600"
+    tools:context=".view.LiveEventSetUpActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_500"
+        android:paddingStart="24dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="18dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:padding="4dp"
+            android:src="@drawable/icon_arrow_left"
+            android:tint="@color/primary_200"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text18OnDark01Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="@string/new_live_event"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivBack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvEnter"
+            style="@style/Text16Primary200Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@string/enter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider"
+        app:layout_constraintTop_toBottomOf="@+id/clToolbar" />
+
+    <com.sendbird.live.videoliveeventsample.view.widget.CameraPreview
+        android:id="@+id/cpLiveEvent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/overlay_01"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/cpLiveEvent"
+        app:layout_constraintTop_toTopOf="@+id/cpLiveEvent">
+
+        <ImageView
+            android:id="@+id/ivFlip"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@drawable/icon_camera_switch"
+            app:tint="@color/ondark_01" />
+
+    </androidx.cardview.widget.CardView>
+
+    <com.sendbird.live.videoliveeventsample.view.widget.SetupItemView
+        android:id="@+id/sivCameraDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/cpLiveEvent"
+        app:left_icon="@drawable/icon_video_on"
+        app:title_text="@string/camera" />
+
+    <View
+        android:id="@+id/vSetupDividerCamera"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/ondark_04"
+        app:layout_constraintTop_toBottomOf="@+id/sivCameraDevice" />
+
+    <com.sendbird.live.videoliveeventsample.view.widget.SetupItemView
+        android:id="@+id/sivAudioDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/vSetupDividerCamera"
+        app:left_icon="@drawable/icon_audio_on"
+        app:title_text="@string/audio_device" />
+
+    <View
+        android:id="@+id/vSetupDividerAudio"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/ondark_04"
+        app:layout_constraintTop_toBottomOf="@+id/sivAudioDevice" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSetupFooter"
+        style="@style/Text14OnDark02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/vSetupDividerAudio" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
