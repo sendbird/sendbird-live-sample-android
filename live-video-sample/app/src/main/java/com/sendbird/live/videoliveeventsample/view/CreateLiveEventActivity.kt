@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import coil.load
 import com.sendbird.android.SendbirdChat
 import com.sendbird.live.LiveEventCreateParams
+import com.sendbird.live.LiveEventType
 import com.sendbird.live.SendbirdLive
 import com.sendbird.live.videoliveeventsample.R
 import com.sendbird.live.videoliveeventsample.databinding.ActivityCreateLiveEventBinding
@@ -144,7 +145,7 @@ class CreateLiveEventActivity : AppCompatActivity() {
         val params = LiveEventCreateParams(userIdsForHost).apply {
             this.title = title
             if (coverFile != null) this.coverFile = coverFile
-//            type = LiveEventType.LIVE_EVENT_FOR_VIDEO
+            type = if (binding.cbIsAudioLive.isChecked) LiveEventType.AUDIO_ONLY else LiveEventType.VIDEO
         }
         SendbirdLive.createLiveEvent(params) createLiveEventLabel@ { liveEvent, e ->
             if (e != null || liveEvent == null) {
@@ -197,10 +198,7 @@ class CreateLiveEventActivity : AppCompatActivity() {
             when (data.id) {
                 DIALOG_ITEM_ID_PHOTO_LIBRARY -> getPhotoFromGallery()
                 DIALOG_ITEM_ID_TAKE_PHOTO -> takePhoto()
-                DIALOG_ITEM_ID_REMOVE_PHOTO -> {
-                    selectedPhotoUri = null
-                    binding.ivCover.load(null)
-                }
+                DIALOG_ITEM_ID_REMOVE_PHOTO -> removePhoto()
             }
         }
     }
@@ -223,6 +221,11 @@ class CreateLiveEventActivity : AppCompatActivity() {
             pendingPhotoUri = uri
             takeCameraLauncher.launch(intent)
         }
+    }
+
+    private fun removePhoto() {
+        selectedPhotoUri = null
+        binding.ivCover.load(R.drawable.coverimage_create_live_event)
     }
 
     private fun requestCameraPermission() {

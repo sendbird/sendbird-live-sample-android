@@ -11,6 +11,7 @@
     <string name="go_live">Go live</string>
     <string name="no_live_events">No live events</string>
     <string name="new_live_event">New live event</string>
+    <string name="live_event_setup">Live event setup</string>
     <string name="sign_out">Sign out</string>
     <string name="bottom_navigation_bar_live_events">Live events</string>
     <string name="bottom_navigation_bar_my_settings">My settings</string>
@@ -59,8 +60,10 @@
     <string name="audio_device_earpiece">Earpiece</string>
     <string name="audio_device_speakerphone">Speakerphone</string>
     <string name="audio_device_wired_headset">Wired headset</string>
+    <string name="audio_device_system_default">System default</string>
     <string name="audio_device_bluetooth">Bluetooth</string>
     <string name="max_host_count">You can add up to 10 users.\nOnly 6 of these users can enter a broadcast.</string>
+    <string name="live_event_setup_footer_guide">When you enter, the live event will be open to participants and they can also enter to chat only.</string>
 
     <string name="participant_count_affix">%s participants</string>
     <string name="watching_count_affix">%s watching</string>
@@ -93,10 +96,14 @@
     <string name="summary_total_participants">Total participants</string>
     <string name="summary_peak_concurrent_participants">Peak concurrent participants</string>
     <string name="summary_duration">Duration</string>
+    <string name="summary_ended_at">Ended at</string>
+    <string name="summary_ended_by">Ended by</string>
 
     <string name="error_message_enter_the_app_id">Please enter the Application ID.</string>
     <string name="error_message_enter_the_user_id">Please enter the User ID.</string>
     <string name="error_message_sign_in">Sign in failed. Please check your information and try again.</string>
+
+    <string name="error_message_network">Please check the network state.</string>
 
     <string name="error_message_ended_enter_dialog_description">Can\&#39;t enter an ended live event.</string>
     <string name="error_message_created_enter_dialog_description">This live event will open soon.</string>

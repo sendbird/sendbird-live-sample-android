@@ -167,5 +167,13 @@
             android:background="@color/ondark_04"
             app:layout_constraintTop_toBottomOf="@id/clUserIdsForHost" />
 
+        <CheckBox
+            android:id="@+id/cbIsAudioLive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Audio Only Live Event"
+            android:textColor="@color/ondark_01"
+            app:layout_constraintTop_toBottomOf="@+id/createLiveEventBottomBorderLine" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

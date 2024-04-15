@@ -144,6 +144,7 @@ class CameraPreview @JvmOverloads constructor(
 
     internal fun releaseCamera() {
         cameraDevice?.close()
+        cameraDevice = null
     }
 
     private val stateCallback: CameraDevice.StateCallback = object : CameraDevice.StateCallback() {
@@ -218,13 +219,16 @@ class CameraPreview @JvmOverloads constructor(
     }
 
     override fun onDetachedFromWindow() {
-        clearCameraSession()
         super.onDetachedFromWindow()
+        clearCameraSession()
     }
 
     fun clearCameraSession() {
-        cameraDevice?.close()
+        cameraManager = null
+        previewRequestBuilder = null
         cameraCaptureSession?.close()
+        cameraCaptureSession = null
+        releaseCamera()
     }
 
     internal class CompareSizesByArea : Comparator<Size> {

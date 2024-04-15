@@ -71,6 +71,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvNickName"
                     style="@style/Text18OnLight01Bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

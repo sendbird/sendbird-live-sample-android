@@ -147,5 +147,58 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/ondark_04" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text14OnDark02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/summary_ended_at" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLiveEventSummaryEndedAt"
+                style="@style/Text14OnDark01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ondark_04" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/Text14OnDark02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/summary_ended_by" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLiveEventSummaryEndedBy"
+                style="@style/Text14OnDark01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ondark_04" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

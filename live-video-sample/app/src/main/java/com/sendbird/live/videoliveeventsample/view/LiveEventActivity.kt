@@ -2,6 +2,7 @@ package com.sendbird.live.videoliveeventsample.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +25,8 @@ import com.sendbird.live.videoliveeventsample.databinding.ActivityLiveEventBindi
 import com.sendbird.live.videoliveeventsample.util.CountUpTimer
 import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_COVER_URL
 import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_DURATION
+import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_ENDED_AT
+import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_ENDED_BY
 import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_ID
 import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_PEAK_PARTICIPANTS
 import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_TOTAL_PARTICIPANTS
@@ -33,7 +36,7 @@ import com.sendbird.live.videoliveeventsample.util.toTimerFormat
 import com.sendbird.webrtc.SendbirdException
 import java.util.UUID
 
-
+const val LIVE_EVENT_LISTENER_ID = "LIVE_EVENT_LISTENER_ID"
 abstract class LiveEventActivity : AppCompatActivity() {
     private var liveEventId: String? = null
     private var countUpTimer: CountUpTimer? = null
@@ -56,7 +59,6 @@ abstract class LiveEventActivity : AppCompatActivity() {
             }
         })
         getLiveEvent()
-//        initOpenChannelView()
     }
 
     abstract fun customOnBackPressed()
@@ -107,10 +109,6 @@ abstract class LiveEventActivity : AppCompatActivity() {
         if (!hosts.isNullOrEmpty()) {
             adapter.addItems(hosts)
         }
-//        val host = liveEvent?.host
-//        if (host != null) {
-//            adapter.addItems(listOf(host))
-//        }
     }
 
     protected fun addHostVideoView(host: Host) {
@@ -121,8 +119,8 @@ abstract class LiveEventActivity : AppCompatActivity() {
         adapter.removeItems(listOf(host))
     }
 
-    protected fun updateHostVideoView(host: Host) {
-        adapter.updateItemView(host.hostId)
+    protected fun updateHostsVideoView() {
+        adapter.notifyDataSetChanged()
     }
 
     protected open fun finishLiveEvent(isEnded: Boolean = false) {
@@ -134,8 +132,11 @@ abstract class LiveEventActivity : AppCompatActivity() {
             intent.putExtra(INTENT_KEY_LIVE_EVENT_TOTAL_PARTICIPANTS, liveEvent?.cumulativeParticipantCount)
             intent.putExtra(INTENT_KEY_LIVE_EVENT_PEAK_PARTICIPANTS, liveEvent?.peakParticipantCount)
             intent.putExtra(INTENT_KEY_LIVE_EVENT_DURATION, liveEvent?.duration)
+            intent.putExtra(INTENT_KEY_LIVE_EVENT_ENDED_AT, liveEvent?.endedAt)
+            intent.putExtra(INTENT_KEY_LIVE_EVENT_ENDED_BY, liveEvent?.endedBy)
             startActivity(intent)
         }
+        liveEvent?.removeListener(LIVE_EVENT_LISTENER_ID)
         finish()
     }
 
@@ -167,7 +168,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
             }
         }
 
-        liveEvent.addListener("${UUID.randomUUID()}", liveEventListenerImpl)
+        liveEvent.addListener(LIVE_EVENT_LISTENER_ID, liveEventListenerImpl)
         attachToLiveEvent()
         initHostView()
         initLiveEventView()
@@ -206,7 +207,6 @@ abstract class LiveEventActivity : AppCompatActivity() {
         override fun onCustomItemsUpdate(liveEvent: LiveEvent, customItems: Map<String, String>, updatedKeys: List<String>) {}
         override fun onDisconnected(liveEvent: LiveEvent, e: SendbirdException) {}
         override fun onExited(liveEvent: LiveEvent, e: SendbirdException) {}
-
         override fun onHostConnected(liveEvent: LiveEvent, host: Host) {}
         override fun onHostDisconnected(liveEvent: LiveEvent, host: Host) {}
         override fun onHostEntered(liveEvent: LiveEvent, host: Host) {}
@@ -222,6 +222,8 @@ abstract class LiveEventActivity : AppCompatActivity() {
         override fun onParticipantCountChanged(liveEvent: LiveEvent, participantCountInfo: ParticipantCountInfo) {}
         override fun onReactionCountUpdated(liveEvent: LiveEvent, key: String, count: Int) {}
         override fun onReconnected(liveEvent: LiveEvent) {}
+
+
     }
 
 }

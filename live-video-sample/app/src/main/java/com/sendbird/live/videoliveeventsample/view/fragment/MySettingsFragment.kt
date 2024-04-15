@@ -24,6 +24,7 @@ class MySettingsFragment : BaseFragment<FragmentMySettingsBinding>(FragmentMySet
             error(R.drawable.icon_user)
         }
         binding.tvUserId.text = SendbirdLive.currentUser?.userId ?: ""
+        binding.tvNickName.text = SendbirdLive.currentUser?.nickname ?: ""
         binding.tvAppId.text = SendbirdLive.applicationId
         binding.btnSignOut.setOnClickListener { signOut() }
     }

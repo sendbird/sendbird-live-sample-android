@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:text="@string/new_live_event"
+            android:text="@string/live_event_setup"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivBack"
             app:layout_constraintTop_toTopOf="parent" />
@@ -130,6 +130,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:text="@string/live_event_setup_footer_guide"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/vSetupDividerAudio" />
 

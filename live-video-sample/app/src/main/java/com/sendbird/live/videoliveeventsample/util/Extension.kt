@@ -63,3 +63,9 @@ fun Int.displayFormat(): String {
         this.toString()
     }
 }
+
+fun Long.convertDateString(): String {
+    val dateFormat = SimpleDateFormat("MMM dd, yyyy 'at' hh:mm a", Locale.KOREA)
+    val date = Date(this)
+    return dateFormat.format(date)
+}

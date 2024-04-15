@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -94,10 +95,17 @@ class LiveEventListFragment :
         adapter.onItemClickListener = OnItemClickListener { _, position, liveEvent ->
             getLiveEvent(liveEvent.liveEventId) { newLiveEvent ->
                 if (position != -1) adapter.notifyItemChanged(position)
+                if (liveEvent.state == LiveEventState.ENDED) {
+                    requireActivity().showAlertDialog(
+                        message = getString(R.string.error_message_ended_enter_dialog_description),
+                        posText = getString(R.string.okay)
+                    )
+                    return@getLiveEvent
+                }
                 if (newLiveEvent.myRole == LiveEventRole.HOST) {
                     requireActivity().showListDialog(
                         title = getString(R.string.dialog_message_choose_your_role),
-                        listItem = listOf(getString(R.string.hosts), getString(R.string.participant))
+                        listItem = listOf(getString(R.string.host), getString(R.string.participant))
                     ) { _, position ->
                         val role = if (position == 0) LiveEventRole.HOST else LiveEventRole.PARTICIPANT
                         enterTheLiveEvent(newLiveEvent, role)
@@ -128,8 +136,6 @@ class LiveEventListFragment :
             addAll(
                 arrayOf(
                     Manifest.permission.RECORD_AUDIO,
-                    Manifest.permission.CALL_PHONE,
-                    Manifest.permission.READ_PHONE_STATE
                 )
             )
         }.toTypedArray()
@@ -173,14 +179,6 @@ class LiveEventListFragment :
     }
 
     private fun enterTheLiveEvent(liveEvent: LiveEvent, role: LiveEventRole) {
-        if (liveEvent.state == LiveEventState.ENDED) {
-            requireActivity().showAlertDialog(
-                message = getString(R.string.error_message_ended_enter_dialog_description),
-                posText = getString(R.string.okay)
-            )
-            return
-        }
-
         if (role == LiveEventRole.HOST) {
             enterAsHost(liveEvent)
         } else {

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -73,6 +74,9 @@ class UserIdsForHostListActivity : AppCompatActivity() {
                         if (adapter.selectedHostUsers.size >= 10) {
                             showToast(R.string.max_host_count)
                         } else {
+                            if (adapter.selectedHostUsers.map { host -> host.userId }.contains(it)) {
+                                return@showEditTextDialog
+                            }
                             adapter.addItems(listOf(SelectedHostUser(it, "", null)))
                         }
                         updateAddButton()
@@ -89,6 +93,7 @@ class UserIdsForHostListActivity : AppCompatActivity() {
         val isEnabled = count < 10
         val tint = if (isEnabled) R.color.primary_200 else R.color.ondark_04
         binding.ivAdd.isEnabled = isEnabled
+        binding.tvGuide.visibility = if (isEnabled) View.GONE else View.VISIBLE
         ImageViewCompat.setImageTintList(binding.ivAdd, ColorStateList.valueOf(ContextCompat.getColor(this, tint)))
     }
 

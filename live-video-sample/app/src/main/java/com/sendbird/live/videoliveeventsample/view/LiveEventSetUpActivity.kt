@@ -10,18 +10,21 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.TextureView
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.sendbird.live.LiveEvent
+import com.sendbird.live.LiveEventState
 import com.sendbird.live.MediaOptions
 import com.sendbird.live.SendbirdLive
 import com.sendbird.live.videoliveeventsample.R
 import com.sendbird.live.videoliveeventsample.databinding.ActivityLiveEventSetUpBinding
+import com.sendbird.live.videoliveeventsample.model.LiveAudioDevice
 import com.sendbird.live.videoliveeventsample.model.TextBottomSheetDialogItem
+import com.sendbird.live.videoliveeventsample.model.toAudioDevice
 import com.sendbird.live.videoliveeventsample.util.INTENT_KEY_LIVE_EVENT_ID
-import com.sendbird.live.videoliveeventsample.util.audioNameResId
 import com.sendbird.live.videoliveeventsample.util.cameraNameResId
-import com.sendbird.live.videoliveeventsample.util.getAvailableAudioDevice
+import com.sendbird.live.videoliveeventsample.util.getAvailableLiveAudioDevice
 import com.sendbird.live.videoliveeventsample.util.getAvailableVideoDevices
 import com.sendbird.live.videoliveeventsample.util.showPermissionDenyDialog
 import com.sendbird.live.videoliveeventsample.util.showSheetRadioDialog
@@ -35,19 +38,14 @@ class LiveEventSetUpActivity : AppCompatActivity() {
         arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CALL_PHONE,
-            Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.BLUETOOTH,
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_SCAN
-
         )
     } else {
         arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CALL_PHONE,
-            Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.BLUETOOTH
         )
     }
@@ -68,9 +66,9 @@ class LiveEventSetUpActivity : AppCompatActivity() {
     private lateinit var audioManager: AudioManager
     private var currentVideoDevice: VideoDevice? = null
     private val availableVideoDevices = mutableListOf<VideoDevice>()
-    private var currentAudioDevice: AudioDevice? = null
-    private val availableAudioDevices: Array<AudioDevice>
-        get() = if (::audioManager.isInitialized) audioManager.getAvailableAudioDevice(this) else emptyArray()
+    private var currentAudioDevice: LiveAudioDevice? = null
+    private val availableAudioDevices: Array<LiveAudioDevice>
+        get() = if (::audioManager.isInitialized) audioManager.getAvailableLiveAudioDevice(this) else emptyArray()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,6 +91,9 @@ class LiveEventSetUpActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        if (liveEvent?.state == LiveEventState.CREATED) {
+            binding.tvSetupFooter.visibility = View.VISIBLE
+        }
         binding.tvEnter.setOnClickListener { enterTheLiveEvent() }
         binding.ivFlip.setOnClickListener { flipCamera() }
         binding.ivBack.setOnClickListener { finish() }
@@ -106,7 +107,7 @@ class LiveEventSetUpActivity : AppCompatActivity() {
             finish()
             return
         }
-        liveEvent.enterAsHost(MediaOptions(videoDevice = currentVideoDevice, audioDevice = currentAudioDevice)) { e ->
+        liveEvent.enterAsHost(MediaOptions(videoDevice = currentVideoDevice, audioDevice = currentAudioDevice?.toAudioDevice())) { e ->
             if (e != null) {
                 Log.e("[SendbirdLiveSample]", "enterAsHost() e: $e")
                 showToast(e.message ?: "")
@@ -143,7 +144,7 @@ class LiveEventSetUpActivity : AppCompatActivity() {
             finish()
             return
         }
-        val currentAudioDevice = if (availableAudioDevices.contains(AudioDevice.BLUETOOTH)) AudioDevice.BLUETOOTH else if (availableAudioDevices.contains(AudioDevice.SPEAKERPHONE)) AudioDevice.SPEAKERPHONE else availableAudioDevices[0]
+        val currentAudioDevice = LiveAudioDevice.SYSTEM_DEFAULT
         setAudioDevice(currentAudioDevice)
         binding.cpLiveEvent.initLayout(cameraManager, currentVideoDevice,
             object : TextureView.SurfaceTextureListener {
@@ -179,7 +180,7 @@ class LiveEventSetUpActivity : AppCompatActivity() {
             }
         }
         binding.sivAudioDevice.setOnClickListener {
-            val availableAudioDialogItems = availableAudioDevices.mapIndexed { index, audioDevice -> TextBottomSheetDialogItem(index, audioDevice.audioNameResId(), R.style.Text16OnDark01)}
+            val availableAudioDialogItems = availableAudioDevices.mapIndexed { index, audioDevice -> TextBottomSheetDialogItem(index + 1, audioDevice.nameResId, R.style.Text16OnDark01) }
             showSheetRadioDialog(
                 title = getString(R.string.audio_device),
                 titleAppearance = R.style.Text18OnDark01,
@@ -200,9 +201,9 @@ class LiveEventSetUpActivity : AppCompatActivity() {
         binding.sivCameraDevice.setTag(getString(videoDevice.cameraNameResId()))
     }
 
-    private fun setAudioDevice(audioDevice: AudioDevice) {
+    private fun setAudioDevice(audioDevice: LiveAudioDevice) {
         currentAudioDevice = audioDevice
-        binding.sivAudioDevice.setTag(audioDevice.name)
+        binding.sivAudioDevice.setTag(getString(audioDevice.nameResId))
     }
 
 }

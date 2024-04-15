@@ -7,6 +7,7 @@ import com.sendbird.live.LiveEventState
 import com.sendbird.live.ParticipantCountInfo
 import com.sendbird.live.videoliveeventsample.R
 import com.sendbird.live.videoliveeventsample.util.displayFormat
+import com.sendbird.live.videoliveeventsample.util.showToast
 import com.sendbird.webrtc.SendbirdException
 
 class LiveEventForParticipantActivity : LiveEventActivity() {
@@ -32,6 +33,10 @@ class LiveEventForParticipantActivity : LiveEventActivity() {
         override fun onDisconnected(liveEvent: LiveEvent, e: SendbirdException) {
             finish()
         }
+        override fun onExited(liveEvent: LiveEvent, e: SendbirdException) {
+            showToast(R.string.error_message_network)
+            finish()
+        }
         override fun onHostConnected(liveEvent: LiveEvent, host: Host) {
             showBanner(null)
         }
@@ -47,16 +52,16 @@ class LiveEventForParticipantActivity : LiveEventActivity() {
             removeHostVideoView(host)
         }
         override fun onHostStartVideo(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onHostStopVideo(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onHostMuteAudio(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onHostUnmuteAudio(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onLiveEventEnded(liveEvent: LiveEvent) {
             finishLiveEvent(true)
