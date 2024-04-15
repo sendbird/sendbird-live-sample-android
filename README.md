@@ -14,9 +14,6 @@ To see the video live event sample, open the `live-video-sample` project.
 ### Audio Live
 To see the audio-only live event sample, open the `live-audio-sample` project. 
 
-### Video Live UIKit
-To see the video live uikit sample, open the `live-video-uikit-sample` project. 
-
 --- 
 
 To learn more about Sendbird Live, please visit our [docs page](https://sendbird.com/docs/live/sdk/v1/android/getting-started/start-your-first-live). 
