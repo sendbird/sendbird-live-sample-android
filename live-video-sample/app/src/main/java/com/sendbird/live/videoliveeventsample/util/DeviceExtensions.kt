@@ -15,6 +15,8 @@ import android.media.AudioManager
 import android.os.Build
 import androidx.core.app.ActivityCompat
 import com.sendbird.live.videoliveeventsample.R
+import com.sendbird.live.videoliveeventsample.model.LiveAudioDevice
+import com.sendbird.live.videoliveeventsample.model.toLiveAudioDevice
 import com.sendbird.webrtc.AudioDevice
 import com.sendbird.webrtc.VideoDevice
 import org.webrtc.Camera1Enumerator
@@ -68,33 +70,34 @@ fun AudioDevice.audioNameResId(): Int {
     }
 }
 
-internal fun AudioManager.getAvailableAudioDevice(context: Context): Array<AudioDevice> {
-    val audioDevices: MutableList<AudioDevice> = mutableListOf()
+internal fun AudioManager.getAvailableLiveAudioDevice(context: Context): Array<LiveAudioDevice> {
+    val audioDevices: MutableList<LiveAudioDevice> = mutableListOf()
     val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
     val bluetoothAdapter = bluetoothManager.adapter
+    audioDevices.add(LiveAudioDevice.SYSTEM_DEFAULT)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S){
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
             if (bluetoothAdapter != null && BluetoothAdapter.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET)) {
-                audioDevices.add(AudioDevice.BLUETOOTH)
+                audioDevices.add(AudioDevice.BLUETOOTH.toLiveAudioDevice())
             }
         }
     } else {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH) == PackageManager.PERMISSION_GRANTED) {
             if (bluetoothAdapter != null && BluetoothAdapter.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET)) {
-                audioDevices.add(AudioDevice.BLUETOOTH)
+                audioDevices.add(AudioDevice.BLUETOOTH.toLiveAudioDevice())
             }
         }
     }
 
     if (hasWiredHeadset()) {
         // If a wired headset is connected, then it is the only possible option.
-        audioDevices.add(AudioDevice.WIRED_HEADSET)
+        audioDevices.add(AudioDevice.WIRED_HEADSET.toLiveAudioDevice())
     } else {
         // No wired headset, hence the audio-device list can contain speaker
         // phone (on a tablet), or speaker phone and earpiece (on mobile phone).
-        audioDevices.add(AudioDevice.SPEAKERPHONE)
+        audioDevices.add(AudioDevice.SPEAKERPHONE.toLiveAudioDevice())
         if (context.hasEarpiece()) {
-            audioDevices.add(AudioDevice.EARPIECE)
+            audioDevices.add(AudioDevice.EARPIECE.toLiveAudioDevice())
         }
     }
     return audioDevices.toTypedArray()

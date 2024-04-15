@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.sendbird.live.LiveEvent
 import com.sendbird.live.LiveEventState
+import com.sendbird.live.LiveEventType
 import com.sendbird.live.videoliveeventsample.R
 import com.sendbird.live.videoliveeventsample.databinding.ListItemLiveEventBinding
 import com.sendbird.live.videoliveeventsample.util.OnItemClickListener
@@ -77,6 +78,7 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
             binding.tvParticipantCount.text = liveEvent.participantCount.displayFormat()
             val indicatorBackgroundRes = if (liveEvent.state == LiveEventState.ONGOING) R.drawable.shape_live_event_ongoing_indicator else R.drawable.shape_live_event_pause_indicator
             binding.vLiveIndicator.setBackgroundResource(indicatorBackgroundRes)
+            binding.tvLiveEventType.text = if (liveEvent.type == LiveEventType.AUDIO_ONLY) "AUDIO ONLY" else "VIDEO"
 
             val coverBackgroundRes =
                 if (!liveEvent.coverUrl.isNullOrBlank()) liveEvent.coverUrl
@@ -130,7 +132,7 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
             return oldItem.state == newItem.state
                     && oldItem.title == newItem.title
                     && oldItem.coverUrl == newItem.coverUrl
-//                    && oldItem.hostName == newItem.hosts.joinToString(", ") { it.userId }
+                    && oldItem.hostName == newItem.hosts.joinToString(", ") { it.userId }
                     && oldItem.isHostStreaming == newItem.isHostStreaming
                     && oldItem.participantCount == newItem.participantCount
         }
@@ -140,7 +142,7 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
         val liveEventId: String = liveEvent.liveEventId
         val participantCount: Int = liveEvent.participantCount
         val title: String? = liveEvent.title
-//        val hostName: String? = liveEvent.hosts.joinToString(", ") { it.userId }
+        val hostName: String? = liveEvent.hosts.joinToString(", ") { it.userId }
         val state: LiveEventState = liveEvent.state
         val isHostStreaming: Boolean = liveEvent.isHostStreaming
         val coverUrl: String? = liveEvent.coverUrl
@@ -153,7 +155,7 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
             if (liveEventId != other.liveEventId) return false
             if (participantCount != other.participantCount) return false
             if (title != other.title) return false
-//            if (hostName != other.hostName) return false
+            if (hostName != other.hostName) return false
             if (state != other.state) return false
             if (isHostStreaming != other.isHostStreaming) return false
             if (coverUrl != other.coverUrl) return false
@@ -165,7 +167,7 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
             result = 31 * result + liveEventId.hashCode()
             result = 31 * result + participantCount
             result = 31 * result + title.hashCode()
-//            result = 31 * result + (hostName?.hashCode() ?: 0)
+            result = 31 * result + (hostName?.hashCode() ?: 0)
             result = 31 * result + state.hashCode()
             result = 31 * result + isHostStreaming.hashCode()
             result = 31 * result + coverUrl.hashCode()

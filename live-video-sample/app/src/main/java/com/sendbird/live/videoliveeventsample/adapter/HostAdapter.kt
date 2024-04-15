@@ -92,12 +92,6 @@ class HostAdapter(private val liveEvent: LiveEvent) :
         notifyDataSetChanged()
     }
 
-    fun updateItemView(hostId: String) {
-        val targetPosition = hostMap.keys.indexOfFirst { it == hostId }
-        notifyItemChanged(targetPosition)
-    }
-
-
     class HostViewHolder(
         val binding: ListItemHostBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -160,12 +154,3 @@ class HostAdapter(private val liveEvent: LiveEvent) :
         }
     }
 }
-
-fun Int.spanCount() =
-    if (this <= 1) 1
-    else 2
-
-fun Int.ratioDivisor() =
-    if (this <= 1) 1
-    else if (this in 2..4) 2
-    else 3

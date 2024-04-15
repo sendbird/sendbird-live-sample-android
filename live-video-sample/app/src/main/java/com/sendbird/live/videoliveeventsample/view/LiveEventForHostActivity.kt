@@ -1,5 +1,6 @@
 package com.sendbird.live.videoliveeventsample.view
 
+import android.os.Bundle
 import android.util.Log
 import com.sendbird.live.Host
 import com.sendbird.live.LiveEvent
@@ -14,8 +15,16 @@ import com.sendbird.live.videoliveeventsample.util.showSheetDialog
 import com.sendbird.live.videoliveeventsample.util.showSheetRadioDialog
 import com.sendbird.live.videoliveeventsample.util.showToast
 import com.sendbird.webrtc.SendbirdException
+import com.sendbird.webrtc.handler.CompletionHandler
 
 class LiveEventForHostActivity : LiveEventActivity() {
+    private var doStartVideo: Boolean = false
+    private val currentHost: Host?
+        get() =
+            if (liveEvent?.currentLiveEventUser !is Host) null
+            else liveEvent?.currentLiveEventUser as Host?
+
+
     private var hostExitDialogItems: List<TextBottomSheetDialogItem> = listOf(
         TextBottomSheetDialogItem(
             DIALOG_ITEM_END_LIVE_EVENT,
@@ -40,7 +49,6 @@ class LiveEventForHostActivity : LiveEventActivity() {
             liveEvent?.setEventReady { e ->
                 if (e != null) {
                     showToast(e.message ?: "")
-                    finish()
                     return@setEventReady
                 }
             }
@@ -51,6 +59,7 @@ class LiveEventForHostActivity : LiveEventActivity() {
         super.initLiveEventView()
         binding.ivClose.setOnClickListener { showEndDialog() }
         binding.tvTimer.setOnClickListener {
+            if (liveEvent?.state == LiveEventState.ONGOING || liveEvent?.state == LiveEventState.ENDED) return@setOnClickListener
             liveEvent?.startEvent { e ->
                 if (e != null) {
                     showToast(e.message ?: "")
@@ -93,7 +102,7 @@ class LiveEventForHostActivity : LiveEventActivity() {
                         showToast(e.message ?: "")
                     }
                     binding.ivMic.setImageResource(R.drawable.icon_audio_off)
-                    updateHostVideoView(currentHost)
+                    updateHostsVideoView()
                 }
             } else {
                 liveEvent.unmuteAudioInput { e ->
@@ -101,7 +110,7 @@ class LiveEventForHostActivity : LiveEventActivity() {
                         showToast(e.message ?: "")
                     }
                     binding.ivMic.setImageResource(R.drawable.icon_audio_on)
-                    updateHostVideoView(currentHost)
+                    updateHostsVideoView()
                 }
             }
         }
@@ -114,27 +123,46 @@ class LiveEventForHostActivity : LiveEventActivity() {
                 showToast(R.string.error_message_error_description)
                 return@setOnClickListener
             }
-            Log.v("zzzzzz", "currentHost.isVideoOn ${currentHost.isVideoOn}")
             if (currentHost.isVideoOn) {
                 liveEvent.stopVideo { e ->
                     if (e != null) {
                         showToast(e.message ?: "")
                     }
-                    Log.v("zzzzzz", "currentHost.isVideoOn result ${currentHost.isVideoOn}")
                     binding.ivVideo.setImageResource(R.drawable.icon_video_off)
-                    updateHostVideoView(currentHost)
+                    updateHostsVideoView()
                 }
             } else {
                 liveEvent.startVideo { e ->
                     if (e != null) {
                         showToast(e.message ?: "")
                     }
-                    Log.v("zzzzzz", "currentHost.isVideoOn result ${currentHost.isVideoOn}")
                     binding.ivVideo.setImageResource(R.drawable.icon_video_on)
-                    updateHostVideoView(currentHost)
+                    updateHostsVideoView()
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (doStartVideo) {
+            liveEvent?.startVideo(null)
+        }
+        doStartVideo = false
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val host = currentHost ?: return
+        doStartVideo = host.isVideoOn
+        if (doStartVideo) {
+            liveEvent?.stopVideo(null)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        liveEvent?.exitAsHost(null)
     }
 
     override var liveEventListenerImpl = object : LiveEventListenerImpl() {
@@ -146,6 +174,9 @@ class LiveEventForHostActivity : LiveEventActivity() {
         override fun onDisconnected(liveEvent: LiveEvent, e: SendbirdException) {
             finish()
         }
+        override fun onExited(liveEvent: LiveEvent, e: SendbirdException) {
+            finish()
+        }
         override fun onHostEntered(liveEvent: LiveEvent, host: Host) {
             updateToolbarView()
             addHostVideoView(host)
@@ -155,16 +186,16 @@ class LiveEventForHostActivity : LiveEventActivity() {
             removeHostVideoView(host)
         }
         override fun onHostStartVideo(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onHostStopVideo(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onHostMuteAudio(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onHostUnmuteAudio(liveEvent: LiveEvent, host: Host) {
-            updateHostVideoView(host)
+            updateHostsVideoView()
         }
         override fun onLiveEventEnded(liveEvent: LiveEvent) {
             finishLiveEvent(true)
@@ -194,11 +225,11 @@ class LiveEventForHostActivity : LiveEventActivity() {
     }
 
     private fun finishLiveEvent(isEnded: Boolean, doEnd: Boolean) {
-        finishLiveEvent(isEnded)
+        val handler = CompletionHandler { finishLiveEvent(isEnded) }
         if (doEnd) {
-            liveEvent?.endEvent(null)
+            liveEvent?.endEvent(handler)
         } else {
-            liveEvent?.exitAsHost(null)
+            liveEvent?.exitAsHost(handler)
         }
     }
 
