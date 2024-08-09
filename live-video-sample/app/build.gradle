@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.sendbird.live.videoliveeventsample'
+    namespace 'com.sendbird.live.uikit.sample'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.sendbird.live.videoliveeventsample"
+        applicationId "com.sendbird.live.uikit.sample"
         minSdk 24
         targetSdk 34
         versionCode 1

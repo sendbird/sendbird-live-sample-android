@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-        <com.sendbird.live.videoliveeventsample.view.widget.SquareTextureView
+        <com.sendbird.live.uikit.sample.view.widget.SquareTextureView
             android:id="@+id/svCameraPreview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
