@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace 'com.sendbird.live.videoliveeventsample'
-    compileSdk 33
+    namespace 'com.sendbird.live.uikit.sample'
+    compileSdk 34
 
     defaultConfig {
-        applicationId "com.sendbird.live.videoliveeventsample"
+        applicationId "com.sendbird.live.uikit.sample"
         minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 34
+        versionCode 7
+        versionName "1.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,7 +48,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
-    implementation 'com.sendbird.sdk:sendbird-live:1.2.5'
+    implementation 'com.sendbird.sdk:sendbird-live:1.2.6'
     implementation 'io.coil-kt:coil:2.4.0'
     implementation 'com.google.android.gms:play-services-basement:18.2.0'
 

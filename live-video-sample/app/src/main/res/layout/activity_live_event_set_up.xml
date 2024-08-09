@@ -59,7 +59,7 @@
         android:background="@color/divider"
         app:layout_constraintTop_toBottomOf="@+id/clToolbar" />
 
-    <com.sendbird.live.videoliveeventsample.view.widget.CameraPreview
+    <com.sendbird.live.uikit.sample.view.widget.CameraPreview
         android:id="@+id/cpLiveEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.sendbird.live.videoliveeventsample.view.widget.SetupItemView
+    <com.sendbird.live.uikit.sample.view.widget.SetupItemView
         android:id="@+id/sivCameraDevice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -107,7 +107,7 @@
         android:background="@color/ondark_04"
         app:layout_constraintTop_toBottomOf="@+id/sivCameraDevice" />
 
-    <com.sendbird.live.videoliveeventsample.view.widget.SetupItemView
+    <com.sendbird.live.uikit.sample.view.widget.SetupItemView
         android:id="@+id/sivAudioDevice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
