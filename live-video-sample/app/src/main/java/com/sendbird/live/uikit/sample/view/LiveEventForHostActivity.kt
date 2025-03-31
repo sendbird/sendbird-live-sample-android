@@ -1,10 +1,6 @@
 package com.sendbird.live.uikit.sample.view
 
-import com.sendbird.live.Host
-import com.sendbird.live.LiveEvent
-import com.sendbird.live.LiveEventState
-import com.sendbird.live.ParticipantCountInfo
-import com.sendbird.live.SendbirdLive
+import com.sendbird.live.*
 import com.sendbird.live.uikit.sample.R
 import com.sendbird.live.uikit.sample.model.TextBottomSheetDialogItem
 import com.sendbird.live.uikit.sample.util.audioNameResId
@@ -12,8 +8,10 @@ import com.sendbird.live.uikit.sample.util.displayFormat
 import com.sendbird.live.uikit.sample.util.showSheetDialog
 import com.sendbird.live.uikit.sample.util.showSheetRadioDialog
 import com.sendbird.live.uikit.sample.util.showToast
+import com.sendbird.webrtc.Resolution
 import com.sendbird.webrtc.SendbirdException
 import com.sendbird.webrtc.handler.CompletionHandler
+import org.webrtc.RtpParameters
 
 class LiveEventForHostActivity : LiveEventActivity() {
     private var doStartVideo: Boolean = false
@@ -58,7 +56,14 @@ class LiveEventForHostActivity : LiveEventActivity() {
         binding.ivClose.setOnClickListener { showEndDialog() }
         binding.tvTimer.setOnClickListener {
             if (liveEvent?.state == LiveEventState.ONGOING || liveEvent?.state == LiveEventState.ENDED) return@setOnClickListener
-            liveEvent?.startEvent { e ->
+
+            val mediaOptions = MediaOptions().apply {
+                videoQualityConstraints = VideoQualityConstraints().apply {
+                    resolution = Resolution(1920, 1080)
+                }
+            }
+
+            liveEvent?.startEvent(options = mediaOptions) { e ->
                 if (e != null) {
                     showToast(e.message ?: "")
                     return@startEvent

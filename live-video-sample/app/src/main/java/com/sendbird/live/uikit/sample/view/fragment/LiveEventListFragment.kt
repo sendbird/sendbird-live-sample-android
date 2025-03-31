@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -156,7 +157,7 @@ class LiveEventListFragment :
                 )
                 return
             }
-            LiveEventState.READY, LiveEventState.ONGOING -> {
+            LiveEventState.READY, LiveEventState.ONGOING, LiveEventState.ENDED -> {
                 val requestPermissions = permissions.toTypedArray()
                 if (!requireContext().areAnyPermissionsGranted(requestPermissions)) {
                     requestPermissionLauncher.launch(requestPermissions)
