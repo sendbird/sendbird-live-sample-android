@@ -227,7 +227,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
             host: Host,
             resolution: Resolution
         ) {
-            Log.e("SendbirdLive", "onHostVideoResolutionChanged() resolution: $resolution")
+            Log.i("[SendbirdLiveSample]", "onHostVideoResolutionChanged() resolution: $resolution")
         }
     }
 }
