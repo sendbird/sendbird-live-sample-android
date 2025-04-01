@@ -11,6 +11,7 @@ import com.sendbird.live.SendbirdLive
 import com.sendbird.live.uikit.sample.util.Event
 import com.sendbird.live.uikit.sample.util.PrefManager
 import com.sendbird.live.uikit.sample.util.changeValue
+import com.sendbird.webrtc.internal.util.LogLevel
 
 class BaseApplication : Application() {
     lateinit var prefManager: PrefManager
@@ -44,6 +45,7 @@ class BaseApplication : Application() {
                     }
 
                     override fun onInitSucceed() {
+                        SendbirdLive.setLoggerLevel(LogLevel.VERBOSE)
                         _initResultLiveData.changeValue(Event(true))
                     }
 
