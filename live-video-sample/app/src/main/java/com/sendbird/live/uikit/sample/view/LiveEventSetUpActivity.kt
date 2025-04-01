@@ -13,10 +13,7 @@ import android.view.TextureView
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.sendbird.live.LiveEvent
-import com.sendbird.live.LiveEventState
-import com.sendbird.live.MediaOptions
-import com.sendbird.live.SendbirdLive
+import com.sendbird.live.*
 import com.sendbird.live.uikit.sample.R
 import com.sendbird.live.uikit.sample.databinding.ActivityLiveEventSetUpBinding
 import com.sendbird.live.uikit.sample.model.LiveAudioDevice
@@ -29,6 +26,7 @@ import com.sendbird.live.uikit.sample.util.getAvailableVideoDevices
 import com.sendbird.live.uikit.sample.util.showPermissionDenyDialog
 import com.sendbird.live.uikit.sample.util.showSheetRadioDialog
 import com.sendbird.live.uikit.sample.util.showToast
+import com.sendbird.webrtc.Resolution
 import com.sendbird.webrtc.VideoDevice
 
 class LiveEventSetUpActivity : AppCompatActivity() {
@@ -106,7 +104,12 @@ class LiveEventSetUpActivity : AppCompatActivity() {
             finish()
             return
         }
-        liveEvent.enterAsHost(MediaOptions(videoDevice = currentVideoDevice, audioDevice = currentAudioDevice?.toAudioDevice())) { e ->
+        val mediaOptions = MediaOptions(videoDevice = currentVideoDevice, audioDevice = currentAudioDevice?.toAudioDevice()).apply {
+            videoQualityConstraints = VideoQualityConstraints().apply {
+                resolution = Resolution(1920, 1080)
+            }
+        }
+        liveEvent.enterAsHost(mediaOptions) { e ->
             if (e != null) {
                 Log.e("[SendbirdLiveSample]", "enterAsHost() e: $e")
                 showToast(e.message ?: "")

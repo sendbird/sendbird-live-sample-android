@@ -2,6 +2,7 @@ package com.sendbird.live.uikit.sample.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +33,7 @@ import com.sendbird.live.uikit.sample.util.INTENT_KEY_LIVE_EVENT_TOTAL_PARTICIPA
 import com.sendbird.live.uikit.sample.util.displayFormat
 import com.sendbird.live.uikit.sample.util.showToast
 import com.sendbird.live.uikit.sample.util.toTimerFormat
+import com.sendbird.webrtc.Resolution
 import com.sendbird.webrtc.SendbirdException
 
 const val LIVE_EVENT_LISTENER_ID = "LIVE_EVENT_LISTENER_ID"
@@ -220,8 +222,12 @@ abstract class LiveEventActivity : AppCompatActivity() {
         override fun onParticipantCountChanged(liveEvent: LiveEvent, participantCountInfo: ParticipantCountInfo) {}
         override fun onReactionCountUpdated(liveEvent: LiveEvent, key: String, count: Int) {}
         override fun onReconnected(liveEvent: LiveEvent) {}
-
-
+        override fun onHostVideoResolutionChanged(
+            liveEvent: LiveEvent,
+            host: Host,
+            resolution: Resolution
+        ) {
+            Log.i("[SendbirdLiveSample]", "onHostVideoResolutionChanged() resolution: $resolution")
+        }
     }
-
 }

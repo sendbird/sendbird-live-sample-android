@@ -156,7 +156,7 @@ class LiveEventListFragment :
                 )
                 return
             }
-            LiveEventState.READY, LiveEventState.ONGOING -> {
+            LiveEventState.READY, LiveEventState.ONGOING, LiveEventState.ENDED -> {
                 val requestPermissions = permissions.toTypedArray()
                 if (!requireContext().areAnyPermissionsGranted(requestPermissions)) {
                     requestPermissionLauncher.launch(requestPermissions)
