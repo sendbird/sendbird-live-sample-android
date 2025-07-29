@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace 'com.sendbird.live.uikit.sample'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.sendbird.live.uikit.sample"
         minSdk 24
-        targetSdk 34
+        targetSdk 35
         versionCode 7
         versionName "1.1.0"
 
