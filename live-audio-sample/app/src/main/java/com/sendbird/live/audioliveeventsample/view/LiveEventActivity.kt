@@ -145,7 +145,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             replace(R.id.fcvChat, getOpenChannelFragment(liveEventId))
         }
-        openChannelFragment.title = liveEvent?.title
+        openChannelFragment.title = liveEvent?.title?.takeIf { it.isNotBlank() } ?: getString(R.string.live_event)
         openChannelFragment.profileImageUrl = liveEvent?.hosts?.firstOrNull()?.profileURL ?: liveEvent?.coverUrl
         openChannelFragment.onHeaderChatButtonClickListener = View.OnClickListener { setChatViewVisibility(!openChannelFragment.isVisible) }
     }
