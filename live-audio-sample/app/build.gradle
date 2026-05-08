@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.sendbird.live.audioliveeventsample'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.sendbird.live.audioliveeventsample"
         minSdk 24
-        targetSdk 33
+        targetSdk 36
         versionCode 1
         versionName "1.0"
 
