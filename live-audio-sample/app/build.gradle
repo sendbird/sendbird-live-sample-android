@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.sendbird.live.audioliveeventsample'
-    compileSdk 33
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.sendbird.live.audioliveeventsample"
@@ -44,7 +44,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
     implementation 'com.sendbird.sdk:uikit:3.+'
-    implementation 'com.sendbird.sdk:sendbird-live:1.1.2'
+    implementation 'com.sendbird.sdk:sendbird-live:1.2.8'
     implementation 'io.coil-kt:coil:2.4.0'
 
     testImplementation 'junit:junit:4.13.2'

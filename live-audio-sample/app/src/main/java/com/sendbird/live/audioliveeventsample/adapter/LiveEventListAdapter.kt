@@ -119,7 +119,7 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
             return oldItem.state == newItem.state
                     && oldItem.title == newItem.title
                     && oldItem.coverUrl == newItem.coverUrl
-                    && oldItem.hostName == newItem.host?.nickname
+                    && oldItem.hostName == newItem.hosts.firstOrNull()?.nickname
                     && oldItem.isHostStreaming == newItem.isHostStreaming
                     && oldItem.participantCount == newItem.participantCount
         }
@@ -129,7 +129,7 @@ open class LiveEventListAdapter : RecyclerView.Adapter<LiveEventListAdapter.Live
         val liveEventId: String = liveEvent.liveEventId
         val participantCount: Int = liveEvent.participantCount
         val title: String? = liveEvent.title
-        val hostName: String? = liveEvent.host?.nickname
+        val hostName: String? = liveEvent.hosts.firstOrNull()?.nickname
         val state: LiveEventState = liveEvent.state
         val isHostStreaming: Boolean = liveEvent.isHostStreaming
         val coverUrl: String? = liveEvent.coverUrl

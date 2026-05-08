@@ -44,7 +44,7 @@ class LiveEventForHostActivity : LiveEventActivity() {
             showAudioDeviceDialog()
         }
         binding.ivMic.setOnClickListener {
-            val isAudioOn = liveEvent?.host?.isAudioOn ?: run {
+            val isAudioOn = liveEvent?.hosts?.firstOrNull()?.isAudioOn ?: run {
                 showToast("LiveEvent unavailable")
                 return@setOnClickListener
             }

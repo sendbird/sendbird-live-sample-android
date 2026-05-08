@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:paddingStart="24dp"
     android:paddingEnd="24dp"
     tools:context=".view.SignInManuallyActivity">

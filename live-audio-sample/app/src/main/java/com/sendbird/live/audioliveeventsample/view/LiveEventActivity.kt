@@ -11,6 +11,7 @@ import coil.load
 import com.sendbird.live.*
 import com.sendbird.live.audioliveeventsample.R
 import com.sendbird.live.audioliveeventsample.databinding.ActivityLiveEventBinding
+import com.sendbird.live.audioliveeventsample.service.LiveEventService
 import com.sendbird.live.audioliveeventsample.util.*
 import com.sendbird.live.audioliveeventsample.view.fragment.LiveEventOpenChannelFragment
 import com.sendbird.live.audioliveeventsample.view.widget.ReactionConstants
@@ -40,6 +41,9 @@ abstract class LiveEventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLiveEventBinding.inflate(layoutInflater)
         liveEventId = intent.getStringExtra(INTENT_KEY_LIVE_EVENT_ID)
+        liveEventId?.let {
+            LiveEventService.start(this, it, asHost = this is LiveEventForHostActivity)
+        }
         setContentView(binding.root)
         openChannelFragment = LiveEventOpenChannelFragment()
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -49,6 +53,11 @@ abstract class LiveEventActivity : AppCompatActivity() {
         })
         getLiveEvent()
         initOpenChannelView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LiveEventService.stop(this)
     }
 
     abstract fun customOnBackPressed()
@@ -65,7 +74,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
         binding.ivMore.visibility = optionVisibility
         binding.ivMic.visibility = optionVisibility
         binding.tvTimer.visibility = optionVisibility
-        binding.ivHostProfile.load(liveEvent?.coverUrl ?: liveEvent?.host?.profileURL) {
+        binding.ivHostProfile.load(liveEvent?.coverUrl ?: liveEvent?.hosts?.firstOrNull()?.profileURL) {
             crossfade(true)
             placeholder(R.drawable.icon_default_user)
             error(R.drawable.icon_default_user)
@@ -75,7 +84,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
             startTimer(liveEvent?.duration ?: 0L)
         }
         binding.tvParticipantCount.text = "${liveEvent?.participantCount ?: 0}".attachAffix(getString(R.string.participant_count_affix))
-        cachedHostProfileUrl = liveEvent?.host?.profileURL
+        cachedHostProfileUrl = liveEvent?.hosts?.firstOrNull()?.profileURL
     }
 
     protected open fun finishLiveEvent(isEnded: Boolean = false) {
@@ -137,7 +146,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
             replace(R.id.fcvChat, getOpenChannelFragment(liveEventId))
         }
         openChannelFragment.title = liveEvent?.title
-        openChannelFragment.profileImageUrl = liveEvent?.host?.profileURL ?: liveEvent?.coverUrl
+        openChannelFragment.profileImageUrl = liveEvent?.hosts?.firstOrNull()?.profileURL ?: liveEvent?.coverUrl
         openChannelFragment.onHeaderChatButtonClickListener = View.OnClickListener { setChatViewVisibility(!openChannelFragment.isVisible) }
     }
 
@@ -185,6 +194,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
         override fun onCustomItemsDelete(liveEvent: LiveEvent, customItems: Map<String, String>, deletedKeys: List<String>) {}
         override fun onCustomItemsUpdate(liveEvent: LiveEvent, customItems: Map<String, String>, updatedKeys: List<String>) {}
         override fun onDisconnected(liveEvent: LiveEvent, e: SendbirdException) {}
+        override fun onExited(liveEvent: LiveEvent, e: SendbirdException) {}
         override fun onHostConnected(liveEvent: LiveEvent, host: Host) {}
         override fun onHostDisconnected(liveEvent: LiveEvent, host: Host) {}
         override fun onHostEntered(liveEvent: LiveEvent, host: Host) {}
@@ -199,6 +209,7 @@ abstract class LiveEventActivity : AppCompatActivity() {
         override fun onLiveEventStarted(liveEvent: LiveEvent) {}
         override fun onParticipantCountChanged(liveEvent: LiveEvent, participantCountInfo: ParticipantCountInfo) {}
         override fun onReactionCountUpdated(liveEvent: LiveEvent, key: String, count: Int) {}
+        override fun onReconnected(liveEvent: LiveEvent) {}
     }
 
 }
