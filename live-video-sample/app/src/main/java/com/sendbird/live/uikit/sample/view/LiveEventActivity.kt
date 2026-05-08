@@ -22,6 +22,7 @@ import com.sendbird.live.SendbirdLive
 import com.sendbird.live.uikit.sample.R
 import com.sendbird.live.uikit.sample.adapter.HostAdapter
 import com.sendbird.live.uikit.sample.databinding.ActivityLiveEventBinding
+import com.sendbird.live.uikit.sample.service.LiveEventService
 import com.sendbird.live.uikit.sample.util.CountUpTimer
 import com.sendbird.live.uikit.sample.util.INTENT_KEY_LIVE_EVENT_COVER_URL
 import com.sendbird.live.uikit.sample.util.INTENT_KEY_LIVE_EVENT_DURATION
@@ -51,6 +52,9 @@ abstract class LiveEventActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLiveEventBinding.inflate(layoutInflater)
         liveEventId = intent.getStringExtra(INTENT_KEY_LIVE_EVENT_ID)
+        liveEventId?.let {
+            LiveEventService.start(this, it, asHost = this is LiveEventForHostActivity)
+        }
         setContentView(binding.root)
 //        openChannelFragment = LiveEventOpenChannelFragment()
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -59,6 +63,11 @@ abstract class LiveEventActivity : AppCompatActivity() {
             }
         })
         getLiveEvent()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LiveEventService.stop(this)
     }
 
     abstract fun customOnBackPressed()

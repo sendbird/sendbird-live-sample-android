@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.sendbird.live.uikit.sample"
         minSdk 24
-        targetSdk 35
+        targetSdk 37
         versionCode 7
         versionName "1.1.0"
 
