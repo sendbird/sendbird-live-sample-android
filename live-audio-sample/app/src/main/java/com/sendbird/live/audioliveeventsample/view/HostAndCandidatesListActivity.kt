@@ -33,7 +33,7 @@ class HostAndCandidatesListActivity : AppCompatActivity() {
                 finish()
                 return@getLiveEvent
             }
-            adapter.addItems(liveEvent.userIdsForHost.map { if (it == liveEvent.host?.userId) "$it (${getString(R.string.you)})" else it })
+            adapter.addItems(liveEvent.userIdsForHost.map { if (it == liveEvent.hosts.firstOrNull()?.userId) "$it (${getString(R.string.you)})" else it })
         }
     }
 }

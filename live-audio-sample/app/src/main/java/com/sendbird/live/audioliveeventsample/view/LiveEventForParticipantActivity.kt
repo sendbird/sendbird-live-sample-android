@@ -33,8 +33,8 @@ class LiveEventForParticipantActivity : LiveEventActivity() {
         SendbirdChat.addChannelHandler("${UUID.randomUUID()}", object : OpenChannelHandler() {
             override fun onMessageReceived(channel: BaseChannel, message: BaseMessage) {}
             override fun onChannelChanged(channel: BaseChannel) {
-                openChannelFragment.title = liveEvent?.host?.userId?.attachAffix(binding.root.context.getString(R.string.live_event_title_affix)) ?: liveEvent?.title ?: binding.root.context.getString(R.string.live_event)
-                openChannelFragment.profileImageUrl = liveEvent?.host?.profileURL ?: liveEvent?.coverUrl
+                openChannelFragment.title = liveEvent?.hosts?.firstOrNull()?.userId?.attachAffix(binding.root.context.getString(R.string.live_event_title_affix)) ?: liveEvent?.title ?: binding.root.context.getString(R.string.live_event)
+                openChannelFragment.profileImageUrl = liveEvent?.hosts?.firstOrNull()?.profileURL ?: liveEvent?.coverUrl
             }
         })
     }

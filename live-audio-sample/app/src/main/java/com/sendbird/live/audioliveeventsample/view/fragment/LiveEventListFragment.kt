@@ -22,7 +22,7 @@ class LiveEventListFragment :
 
     private var liveEventListQuery: LiveEventListQuery? = null
     private val params =
-        LiveEventListQuery.Params(hostTypes = listOf(HostType.SINGLE_HOST_AUDIO_ONLY))
+        LiveEventListQuery.Params(types = listOf(LiveEventType.AUDIO_ONLY))
     private val permissions = mutableListOf(
         Manifest.permission.BLUETOOTH
     ).apply {
@@ -70,7 +70,7 @@ class LiveEventListFragment :
         val params = LiveEventCreateParams(listOf(currentUser.userId)).apply {
             title = currentUser.userId.attachAffix(binding.root.context.getString(R.string.live_event_title_affix))
             if (currentUser.profileUrl.isNotEmpty()) coverUrl = currentUser.profileUrl
-            hostType = HostType.SINGLE_HOST_AUDIO_ONLY
+            type = LiveEventType.AUDIO_ONLY
             reactionKeys = listOf(KEY_LIVE_EVENT_LIKE_REACTION)
         }
         SendbirdLive.createLiveEvent(params) createLiveEventLabel@{ liveEvent, e ->

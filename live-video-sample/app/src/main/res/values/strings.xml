@@ -127,4 +127,7 @@
     <string name="permission_text_bluetooth">BLUETOOTH</string>
     <string name="permission_text_bluetooth_connect">BLUETOOTH CONNECT</string>
     <string name="permission_text_unknown">etc</string>
+
+    <!-- LiveEventService -->
+    <string name="live_event_service_notification_text">Live event in progress</string>
 </resources>
